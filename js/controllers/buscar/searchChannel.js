@@ -22,11 +22,11 @@
 		onEnter: function(index) {
 			var entry = this.getEntry(index);
 			if (entry.getInteractive()) {
-                if ( namespace.runningInBrowserOrEmulator() ){
-                        this.triggerKeyboard();
-                } else {
-                    this.triggerVirtualKeyboard();
-                }
+        if ( namespace.runningInBrowserOrEmulator() ){
+          this.triggerKeyboard();
+        } else {
+          this.triggerVirtualKeyboard();
+        }
 			} else {
 				this.triggerSearch(entry);
 			}
@@ -66,22 +66,22 @@
                 ev.preventDefault();
                 namespace.removeEvent(document, "keydown",keydownEvent);
                 if (input.value) {
-					var model = self.getExistingModel(new namespace.SearchModel(input.value));
-                        self.triggerSearch(model,function(){
-                        self.addEntry(model, 1);
-                        self.addHistoryEntry(model);
-                        self.emptyChannelContainer();
-                    });
+                  var model = self.getExistingModel(new namespace.SearchModel(input.value));
+                  self.triggerSearch(model,function(){
+                    self.addEntry(model, 1);
+                    self.addHistoryEntry(model);
+                    self.emptyChannelContainer();
+                  });
                 }
                 input.value = "";
                 input.blur();
-				namespace.SearchChannel.isSearching = false;
+				        namespace.SearchChannel.isSearching = false;
                 document.body.focus();
                 namespace.removeClass(input, "show");
             } else if ([VK_UP, VK_DOWN, VK_LEFT, VK_RIGHT, VK_BACK, VK_BACK_SPACE].indexOf(ev.keyCode)>-1) {
                 input.value = "";
                 input.blur();
-				namespace.SearchChannel.isSearching = false;
+				        namespace.SearchChannel.isSearching = false;
                 document.body.focus();
                 namespace.removeClass(input, "show");
             }
@@ -103,9 +103,9 @@
         if (input.value) {
 					var model = self.getExistingModel(new namespace.SearchModel(input.value));
 					self.triggerSearch(model,function(){
-              self.addEntry(model, 1);
-              self.addHistoryEntry(model);
-              self.emptyChannelContainer();
+            self.addEntry(model, 1);
+            self.addHistoryEntry(model);
+            self.emptyChannelContainer();
           });
 				}
         input.value = "";
@@ -127,7 +127,13 @@
 		},
 
 		triggerSearch: function(searchModel, onSuccessCallback) {
-			namespace.CategoryList.searchFor(searchModel, onSuccessCallback);
+      console.log("triggerSearch",searchModel);
+      var youtubeDAO = new namespace.YoutubeDAO();
+      youtubeDAO.buscar(searchModel,function(resultados){
+        console.warn("resultados en SearchChannel");
+        console.warn(resultados);
+      });
+      namespace.CategoryList.searchFor(searchModel, onSuccessCallback);
 		},
 
 		addHistoryEntry: function(searchModel) {

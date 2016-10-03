@@ -2,34 +2,27 @@
 <rss>
     <channel>	
         <item>
-            <title>Opera TV browser</title>
+            <title>The Wonderful Ones</title>
             <description>The Opera TV Browser, optimized for ease of use and long-tail content on Linux and Android based TVs, set-top boxes and Media- players, is built on Opera´s experience of bringing web browsing to 250 million mobile and PC-users world wide.</description>
             <category>Favoritos</category>
             <duration>00:01:08</duration>
             <content url="http://apps.tvstore.opera.com/videos/Opera_TV_browser.mp4" fileSize="24434480" type="video/mp4" />
-            <thumbnail url="http://apps.tvstore.opera.com/videos/Opera_TV_browser.jpg" width="250" height="140" />
+            <thumbnail url="http://img.youtube.com/vi/ltLJf9QJVK0/0.jpg" width="250" height="140" />
+            <videoID>ltLJf9QJVK0</videoID>
         </item>	
          <item>
-            <title>What's new in Opera Mini Next and Opera Mobile 12</title>
+            <title>Designer Pain</title>
             <description>Check out the latest news and features in Opera Mini and Opera Mobile!
-Features include:
-- WebGL for Opera Mobile
-- A brand new smart screen
-- Unlimited Speed Dials!</description>
+                Features include:
+                - WebGL for Opera Mobile
+                - A brand new smart screen
+                - Unlimited Speed Dials!
+            </description>
             <category>Favoritos</category>
             <duration>00:01:12</duration>
             <content url="http://apps.tvstore.opera.com/videos/What_s_new_in_Opera_Mini_Next_and_Opera_Mobile_12.mp4" fileSize="24434480" type="video/mp4" />
-            <thumbnail url="http://apps.tvstore.opera.com/videos/What_s_new_in_Opera_Mini_Next_and_Opera_Mobile_12.jpg" width="250" height="140" />
+            <thumbnail url="http://img.youtube.com/vi/pHyHnOP31DI/0.jpg" width="250" height="140" />
+            <videoID>pHyHnOP31DI</videoID>
         </item>
-        <item>
-            <title>Smarter browsing</title>
-            <description>Look at all the features available in the Opera browser. Opera is available for Windows, Linux and Mac and can be downloaded for free from http://www.opera.com/</description>
-            <category>Favoritos</category>
-            <duration>00:01:05</duration>
-            <content url="http://apps.tvstore.opera.com/videos/Smarter_browsing.mp4" fileSize="24434480" type="video/mp4" />
-            <thumbnail url="http://apps.tvstore.opera.com/videos/Smarter_browsing.jpg" width="250" height="140" />
-        </item>	
 </channel>
 </rss>
-
-

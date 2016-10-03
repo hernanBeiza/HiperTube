@@ -12,16 +12,16 @@
 			var element = searchTemplate.cloneNode(true).querySelector(".search-element");
 			element.querySelector(".search-text").innerText = namespace.Language.ExitButton;
 
-      this.getContainer().innerHTML = "";
+      	this.getContainer().innerHTML = "";
 			this.getContainer().appendChild(element);
 		},
 
 		onEnter: function() {
-       window.close();
+			window.close();
 		},
 
 		onFocus: function(index) {
-        infoPanel.innerText = namespace.Language.ExitText;
+	        infoPanel.innerText = namespace.Language.ExitText;
 		}
 	});
 

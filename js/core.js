@@ -81,21 +81,20 @@
 			xhr.send(data);
 		},
 
-    getCookie: function(key)
-    {
-      key=key+(namespace.VT_CONFIG.username || "");
-      if (document.cookie.indexOf(key)>-1) {
-        return document.cookie.match(key+"=([^;]*)")[1];
-      } 
-    },
-    setCookie: function(key,value)
-    {
-        
-      key=key+(namespace.VT_CONFIG.username || "");
-      var date = new Date();
-      date.setYear(2300);
-      document.cookie = key + "=" + value + "; expires=" + date.toGMTString();
-    },
+	    getCookie: function(key)
+	    {
+			key=key+(namespace.VT_CONFIG.username || "");
+			if (document.cookie.indexOf(key)>-1) {
+	        	return document.cookie.match(key+"=([^;]*)")[1];
+			} 
+	    },
+	    setCookie: function(key,value)
+	    {	        
+	      key=key+(namespace.VT_CONFIG.username || "");
+	      var date = new Date();
+	      date.setYear(2300);
+	      document.cookie = key + "=" + value + "; expires=" + date.toGMTString();
+	    },
 
 		getHashParam: function(param) {
 			var value;
@@ -120,12 +119,12 @@
 			if (!eventsArray[element][eventName]) {
 				eventsArray[element][eventName] = [];
 				element.addEventListener(eventName, function(e) {
-          for (var i = eventsArray[element][eventName].length - 1; i >= 0; i--){
-            if (!e.cancel) {
-              var entry = eventsArray[element][eventName][i];
-              entry.call(null, e);
-            }
-          }
+      		for (var i = eventsArray[element][eventName].length - 1; i >= 0; i--){
+            	if (!e.cancel) {
+              		var entry = eventsArray[element][eventName][i];
+              		entry.call(null, e);
+            	}
+			}
 				},
 				true);
 			}

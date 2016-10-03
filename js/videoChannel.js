@@ -3,7 +3,7 @@
 	var videoTemplate = namespace.prepareTemplate("videoEntryTemplate");
 	var infoPanel = document.querySelector("#info-panel-title");
 	var infoPanelDesc = document.querySelector("#info-panel-desc");
-	var infoPanelDescripcion = document.querySelector("#info-panel-descripcion");
+	//var infoPanelDescripcion = document.querySelector("#info-panel-descripcion");
 
 	namespace.VideoChannel = function(name) {
 		var self = this;
@@ -13,7 +13,7 @@
 	namespace.VideoChannel.prototype = Object.extend(new namespace.Channel(), {
 
 		renderEntry: function(videoModel, index) {
-			console.log("renderEntry: " + videoModel.getTitle());
+			//console.log("renderEntry: " + videoModel.getTitle());
 			var container = this.getContainer();
 			var element = this.createElement();
 			container.appendChild(element);
@@ -37,14 +37,16 @@
 		},
 
 		onEnter: function(index) {
+			//console.log("onEnter",index);
 			var view = new namespace.FullScreenView(this);
 			view.render(index);
+			
 		},
 		onFocus: function(index) {
 			if (this._channelData && this._channelData[index]) {
 				infoPanel.innerText = this._channelData[index].getTitle();
-				infoPanelDescripcion.innerText = this._channelData[index].getDesc();
-        var value = Math.max(Math.round(this._channelData[index].getDuration()/60), 1);
+				//infoPanelDescripcion.innerText = this._channelData[index].getDesc();
+        		var value = Math.max(Math.round(this._channelData[index].getDuration()/60), 1);
 				infoPanelDesc.innerText =  value + " " + ((value === 1) ? namespace.Language.Minute : namespace.Language.Minutes);	
 			}
 		}

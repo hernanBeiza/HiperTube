@@ -3,6 +3,7 @@
 	var selectView = document.querySelector("#select-view");
 	var infoPanel = document.querySelector("#info-panel-title");
 	var infoPanelDesc = document.querySelector("#info-panel-desc");
+	var infoPanelDescripcion = document.querySelector("#info-panel-descripcion");
 
 	var categoryList, currentCategory = 0,
 	searchResultCategory;
@@ -50,7 +51,8 @@
 
 		// Clear info panel
 		infoPanel.innerText = infoPanelDesc.innerText = "";
-
+		infoPanelDescripcion.innerText = "";
+		
 		var currentChannel = category.getChannel();
 		currentChannel.initChannel();
 
@@ -87,6 +89,7 @@
 	* Just add category to a categoryList, optionally inject inside list
 	*/
 		addCategory: function(category, index) {
+			//console.log("addCategory",category.getName());
 			if (typeof index == "undefined") {
 				this._list.push(category);
 			} else {
@@ -139,6 +142,7 @@
    * Search trough all VideoChannels for given text
    */
 	namespace.CategoryList.searchFor = function(searchModel, onSuccessCallback) {
+		
 		var searchResultCategory;
 		var searchResultChannel;
 		var text = searchModel.getText();

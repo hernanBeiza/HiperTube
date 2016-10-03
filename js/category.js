@@ -12,10 +12,10 @@
 
 	// Constructor
 	namespace.Category = function(name, channel) {
-    name = name || namespace.Language.NoCategory;
+    	name = name || namespace.Language.NoCategory;
 		setName.call(this, name);
 		setChannel.call(this, channel);
-    channel.setChannelName(name);
+    	channel.setChannelName(name);
 	};
 
 	// Public methods

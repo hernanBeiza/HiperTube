@@ -25,8 +25,8 @@
 
 		switch (evt.keyCode) {
 		case VK_LEFT:
-      evt.stopPropagation();
-      evt.preventDefault();
+			evt.stopPropagation();
+			evt.preventDefault();
 			if (selectedIndex > 0) {
 				namespace.Channel.focusNewElement(all[selectedIndex - 1], all[selectedIndex]);
 				currentChannel.setCurrentSelected(selectedIndex - 1);
@@ -37,8 +37,8 @@
 			}
 			break;
 		case VK_RIGHT:
-      evt.stopPropagation();
-      evt.preventDefault();
+			evt.stopPropagation();
+			evt.preventDefault();
 			if (selectedIndex < all.length - 1) {
 				namespace.Channel.focusNewElement(all[selectedIndex + 1], all[selectedIndex]);
 				currentChannel.setCurrentSelected(selectedIndex + 1);
@@ -83,6 +83,7 @@
 		setChannelName: function(name) {
 			this._channelName = name;
 		},
+
 		checkMaxChannelSize: function() {
 			while (this._channelData && MAX_CHANNEL_SIZE < this._channelData.length) {
 				if (!this._splitChannel) {
@@ -163,9 +164,9 @@
 					this.renderEntry(this.getEntry(i), i);
 				}
 			}
-      scrollToElement(this.getContainer().lastChild);
-
+			scrollToElement(this.getContainer().lastChild);
 		},
+		
 		emptyChannelContainer: function() {
 			this.getContainer().innerHTML = "";
 		},

@@ -2,6 +2,7 @@
   namespace.Language = {
     Settings: "Settings",
     Search: "Search",
+    Youtube: "Youtube",
     Favorites: "Favorites",
     FavoriteAdded: "Video added to Favorites List",
     FavoriteRemoved: "Video removed from Favorites List",

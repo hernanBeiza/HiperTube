@@ -7,13 +7,13 @@
 	var progressFullTime = document.querySelector("#full-screen-progress-full-time");
 	var progressPlaybackRate = document.querySelector("#full-screen-progress-current-speed");
 	
-  var backButton = document.querySelector("#full-screen-button-back");
+	var backButton = document.querySelector("#full-screen-button-back");
 	var pauseButton = document.querySelector("#full-screen-button-pause");
 	var favButton = document.querySelector("#full-screen-button-favorite");
 
 	var title = document.querySelector("#full-screen-title");
 	var info = document.querySelector("#full-screen-info");
-  var infoDesc = info.querySelector("#full-screen-info-description");
+  	var infoDesc = info.querySelector("#full-screen-info-description");
 	var categoryDesc = document.querySelector("#full-screen-category");
 	var categoryName = document.querySelector("#full-screen-category-name");
 	var categoryIndex = document.querySelector("#full-screen-category-index");
@@ -22,21 +22,48 @@
 	function hideFullScreenView() {
 		namespace.removeClass(selectView, "hide");
 		namespace.addClass(fullView, "hide");
+		stopVideo();
 	}
 
 	function playPauseEvent() {
+		/*
 		if (video.paused) {
-      namespace.removeClass(pauseButton, "play");
+			namespace.removeClass(pauseButton, "play");
 			video.play();
 		} else {
-      namespace.addClass(pauseButton, "play");
+      		namespace.addClass(pauseButton, "play");
 			video.pause();
+		}
+		*/
+		console.log(youtubePlayer.getPlayerState());
+		switch(youtubePlayer.getPlayerState()){
+			case 0:
+			break;
+			case 1:
+			break;
+			case 2:
+			break;
+		}
+
+		if(youtubePlayer.getPlayerState()==1){
+      		namespace.addClass(pauseButton, "play");
+			youtubePlayer.pauseVideo();
+		} else if(youtubePlayer.getPlayerState()==2){
+			namespace.removeClass(pauseButton, "play");
+			youtubePlayer.playVideo();
 		}
 	}
 
 	function muteUnmuteEvent() {
+		/*
 		video.volume = video.volume > 0.5 ? 0: 1;
 		video.muted = ! video.muted;
+		*/
+		if(youtubePlayer.isMuted()){
+			youtubePlayer.unMute();
+		} else {
+			youtubePlayer.mute();
+		}
 	}
 
 	function updateProgressEvent() {
@@ -45,32 +72,32 @@
 		progressTime.innerText = namespace.humanReadableTime(video.currentTime);
 		progressFullTime.innerText = namespace.humanReadableTime(video.duration);
 
-    if (video.ended) {
-      namespace.addClass(pauseButton, "play");
-      if (namespace.Settings.autoplay) {
-        nextVideoEvent();
-      } else {
-        if (namespace.hasClass(selectView, "hide")) {
-          namespace.removeClass(fullView, "hide");
-        }
-      }
-    }
+	    if (video.ended) {
+			namespace.addClass(pauseButton, "play");
+			if (namespace.Settings.autoplay) {
+				nextVideoEvent();
+			} else {
+				if (namespace.hasClass(selectView, "hide")) {
+					namespace.removeClass(fullView, "hide");
+				}
+			}
+	    }
 	}
 
-  function goForward(){
-    video.currentTime = Math.min( video.duration, video.currentTime + (video.duration/20));
-  }
-  function goBackward(){
-    video.currentTime = Math.max( 0, video.currentTime - (video.duration/20));
-  }
-  function setNormalTime(){
-    video.playbackRate = 1; 
-    updateCurrentPlaybackRate();
-  }
+	function goForward(){
+		video.currentTime = Math.min( video.duration, video.currentTime + (video.duration/20));
+	}
+	function goBackward(){
+    	video.currentTime = Math.max( 0, video.currentTime - (video.duration/20));
+  	}
+  	function setNormalTime(){
+    	video.playbackRate = 1; 
+    	updateCurrentPlaybackRate();
+  	}
 
-  function updateCurrentPlaybackRate(){
-    progressPlaybackRate.innerText = (video.playbackRate != 1) ? video.playbackRate + ">>" : "";
-  }
+  	function updateCurrentPlaybackRate(){
+    	progressPlaybackRate.innerText = (video.playbackRate != 1) ? video.playbackRate + ">>" : "";
+  	}
 
 	function showFullScreenView() {
 		namespace.addClass(selectView, "hide");
@@ -81,68 +108,66 @@
 		if (namespace.hasClass(info, "show")) {
 			switch (evt.keyCode) {
 			case VK_UP:
-        infoDesc.scrollTop -= 50;
+        		infoDesc.scrollTop -= 50;
 				break;
 			case VK_DOWN:
-        infoDesc.scrollTop += 50;
+        		infoDesc.scrollTop += 50;
 				break;
 			default:
 				namespace.removeClass(info, "show");
 				break;
 			}
-		  evt.stopPropagation();
-      evt.preventDefault();
+			evt.stopPropagation();
+			evt.preventDefault();
 			evt.cancel = true;
-
 		} else {
 			if (!namespace.hasClass(selectView, "hide")) {
 				return;
 			}
 			if (!namespace.hasClass(fullView, "hide")) {
 				switch (evt.keyCode) {
-				case VK_UP:
-				case VK_DOWN:
-          if (namespace.hasClass(progressIndicator, "focused")) {
-            focusHandle(pauseButton);
-            setNormalTime();
-          } else {
-            focusHandle(progressIndicator);
-          }
-          evt.preventDefault();
-					break;
+					case VK_UP:
+					case VK_DOWN:
+					if (namespace.hasClass(progressIndicator, "focused")) {
+						focusHandle(pauseButton);
+						setNormalTime();
+					} else {
+		            	focusHandle(progressIndicator);
+					}
+					evt.preventDefault();
+				break;
 				case VK_LEFT:
-          if (!namespace.hasClass(progressIndicator, "focused")){
-            var toFocus = fullView.querySelector(".focused").previousSibling;
-            while (toFocus && toFocus.nodeType != 1) {
-              toFocus = toFocus.previousSibling;
-            }
-            focusHandle(toFocus || fullView.querySelector("#full-screen-button-next"));
-          } else {
-            goBackward();
-          }
-          evt.preventDefault();
+					if (!namespace.hasClass(progressIndicator, "focused")){
+						var toFocus = fullView.querySelector(".focused").previousSibling;
+						while (toFocus && toFocus.nodeType != 1) {
+						toFocus = toFocus.previousSibling;
+						}
+						focusHandle(toFocus || fullView.querySelector("#full-screen-button-next"));
+						} else {
+						goBackward();
+						}
+					evt.preventDefault();
 					break;
 				case VK_RIGHT:
-          if (!namespace.hasClass(progressIndicator, "focused")){
-            focusHandle(fullView.querySelector(".focused+div") || backButton);
-          } else {
-            goForward();
-          }
-          evt.preventDefault();
-					break;
-        case VK_ENTER:
-          enterHandle();
+					if (!namespace.hasClass(progressIndicator, "focused")){
+					focusHandle(fullView.querySelector(".focused+div") || backButton);
+					} else {
+					goForward();
+					}
+					evt.preventDefault();
+				break;
+    			case VK_ENTER:
+          			enterHandle();
 					evt.preventDefault();
 					evt.cancel = true;
-          break;
+          		break;
 				case VK_BACK:
 				case VK_BACK_SPACE:
-          // KO-603 fix for BDP return
-          history.pushState(null, "", "#prevent-back");
+					// KO-603 fix for BDP return
+					history.pushState(null, "", "#prevent-back");
 					evt.preventDefault();
 					evt.cancel = true;
-          backEvent();
-
+					backEvent();
 					break;
 				}
 			}
@@ -150,40 +175,40 @@
 	}
 
 	function focusHandle(element) {
-    if (!element) {
-      return;
-    }
+	    if (!element) {
+	      return;
+	    }
 		namespace.removeClass(fullView.querySelector(".focused"), "focused");
 		namespace.addClass(element, "focused");
 	}
 
 	function enterHandle() {
-    var el = fullView.querySelector(".focused");
-    if (el.onEnter){
-      el.onEnter();
-    }
+	    var el = fullView.querySelector(".focused");
+	    if (el.onEnter){
+			el.onEnter();
+	    }
 	}
 
 	function prevVideoEvent() {
 		if (currentIndex > 0) {
 			renderVideo(currentIndex - 1);
 		} else {
-      renderVideo(playlistIndexes.length - 1);
-    }
+			renderVideo(playlistIndexes.length - 1);
+    	}
 	}
 
 	function nextVideoEvent() {
 		if (currentIndex < playlistIndexes.length - 1) {
 			renderVideo(currentIndex + 1);
 		} else {
-      renderVideo(0);
-    }
+      		renderVideo(0);
+    	}
 	}
 
-  function backEvent(){
-    video.pause();
-    hideFullScreenView();
-  }
+	function backEvent(){
+		video.pause();
+		hideFullScreenView();
+	}
 
 
 	function showInfoEvent() {
@@ -206,10 +231,10 @@
 
 	function handleAddRemoveResponse(added) {
 		if (added) {
-      namespace.removeClass(favButton, "add");
+      		namespace.removeClass(favButton, "add");
 			namespace.showNotification(namespace.Language.FavoriteAdded);
 		} else {
-      namespace.addClass(favButton, "add");
+      		namespace.addClass(favButton, "add");
 			namespace.showNotification(namespace.Language.FavoriteRemoved);
 		}
 		if (currentChannel instanceof namespace.FavoriteChannel) {
@@ -219,9 +244,9 @@
 		}
 	}
 
-  /**
-   * Calculates order of videos in category for currently viewed full screen view
-   */
+	/**
+   	* Calculates order of videos in category for currently viewed full screen view
+   	*/
 	function calculateIndexes(realIndex) {
 		for (var i = 0; i < currentChannel.getChannelLength(); i++) {
 			playlistIndexes[i] = i;
@@ -250,7 +275,6 @@
 		document.querySelector("#full-screen-button-show-info").onEnter = showInfoEvent;
 
 		setInterval(updateProgressEvent, 100);
-
 	}
 
 	function renderVideo(index) {
@@ -258,14 +282,32 @@
 
 		var videoEntry = currentChannel.getEntry(playlistIndexes[index]);
 		if (videoEntry) {
+			currentModel = videoEntry;
 
+			youtubePlayer.width = window.innerWidth + "px";
+			youtubePlayer.height = window.innerHeight + "px";
+			console.log(videoEntry);
+			youtubePlayer.loadVideoById(videoEntry.getID()),
+			mostrarPlayer();
+
+			title.innerText = videoEntry.getTitle();
+			info.querySelector("#full-screen-info-title").innerText = videoEntry.getTitle();
+			info.querySelector("#full-screen-info-details").innerText = "";
+			info.querySelector("#full-screen-info-description").innerText = videoEntry.getDesc();
+
+			showHideChannelNavigation(true);
+			categoryDesc.innerText = namespace.Language.Videos;
+			categoryName.innerText = currentChannel.getChannelName();
+			categoryIndex.innerText = playlistIndexes[currentIndex] + 1 + " / " + currentChannel.getChannelLength();
+
+			/*
 			video.src = videoEntry.getVideo();
-      video.setAttribute("type", videoEntry.getVideoType() || "");
-      video.style.width = window.innerWidth + "px";
-      video.style.height = window.innerHeight + "px";
+			video.setAttribute("type", videoEntry.getVideoType() || "");
+			video.style.width = window.innerWidth + "px";
+			video.style.height = window.innerHeight + "px";
 
 			video.play();
-      namespace.removeClass(pauseButton, "play");
+			namespace.removeClass(pauseButton, "play");
 			updateProgressEvent();
 			title.innerText = videoEntry.getTitle();
 			currentModel = videoEntry;
@@ -277,21 +319,21 @@
 			showHideChannelNavigation(true);
 
 			categoryDesc.innerText = namespace.Language.Videos;
-      categoryName.innerText = currentChannel.getChannelName();
+			categoryName.innerText = currentChannel.getChannelName();
 			categoryIndex.innerText = playlistIndexes[currentIndex] + 1 + " / " + currentChannel.getChannelLength();
 
-      if (namespace.VT_CONFIG.favorite) {
-        if (!namespace.FavoriteChannel.Current.isInFavorites(videoEntry)) {
-          namespace.addClass(favButton, "add");
-        } else {
-          namespace.removeClass(favButton, "add");
-        }
-      } else {
-        if (favButton.parentNode) {
-          favButton.parentNode.removeChild(favButton);
-        }
-      }
-
+			if (namespace.VT_CONFIG.favorite) {
+				if (!namespace.FavoriteChannel.Current.isInFavorites(videoEntry)) {
+					namespace.addClass(favButton, "add");
+				} else {
+					namespace.removeClass(favButton, "add");
+				}
+			} else {
+				if (favButton.parentNode) {
+					favButton.parentNode.removeChild(favButton);
+				}
+			}
+			*/
 		}
 	}
 
@@ -306,10 +348,8 @@
 			currentChannel = this._channel;
 			showFullScreenView();
 			renderVideo(calculateIndexes(realIndex));
-
 			focusHandle(pauseButton);
 		}
 	};
 
 })(window.VTNS);
-

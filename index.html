@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=1280,height=720">
-    <title> Videotemplate </title>
+    <title>HiperTube</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/custom.css" />
 
@@ -37,7 +37,6 @@
         </div>
       </div>
     </script>
-
     <!-- Template for search entry element on a channel list -->
     <script type="text/html" id="searchEntryTemplate">
       <div class="channel-entry search-element">
@@ -55,7 +54,10 @@
   </head>
   <body>
     <div id="main" class="color-4">
-    
+      <!-- // 1 -->
+      <!--
+      <div id="player"></div>
+      -->
       <!-- Full screen video element defined bellow -->
       <video id="video"></video>
 
@@ -125,30 +127,40 @@
       </div>
     </div>
 
-
     <script type="text/javascript">
       // Define namespace
       window.VTNS = {}
     </script>
+
     <script type="text/javascript" src="js/lang.js"></script>
     <script type="text/javascript" src="js/core.js"></script>
     <script type="text/javascript" src="js/settings.js"></script>
     <script type="text/javascript" src="js/channel.js"></script>
     <script type="text/javascript" src="js/exitChannel.js"></script>
     <script type="text/javascript" src="js/settingsChannel.js"></script>
-    <script type="text/javascript" src="js/models/settingsModel.js"></script>
-    <script type="text/javascript" src="js/models/aboutModel.js"></script>
     <script type="text/javascript" src="js/videoChannel.js"></script>
-    <script type="text/javascript" src="js/models/videoModel.js"></script>
-    <script type="text/javascript" src="js/searchChannel.js"></script>
-    <script type="text/javascript" src="js/models/searchModel.js"></script>
-    <script type="text/javascript" src="js/searchResultChannel.js"></script>
     <script type="text/javascript" src="js/favoriteChannel.js"></script>
     <script type="text/javascript" src="js/category.js"></script>
     <script type="text/javascript" src="js/categoryList.js"></script>
-    <script type="text/javascript" src="js/fullScreenView.js"></script>
+
+    <!-- DAOs--> 
+    <script type="text/javascript" src="js/dao/YoutubeDAO.js"></script>
+    <!-- Modelos -->
+    <script type="text/javascript" src="js/models/searchModel.js"></script>
+    <script type="text/javascript" src="js/models/settingsModel.js"></script>
+    <script type="text/javascript" src="js/models/aboutModel.js"></script>
+    <script type="text/javascript" src="js/models/videoModel.js"></script>
+
+    <!-- Controladores -->
+    <script type="text/javascript" src="js/controllers/buscar/searchChannel.js"></script>
+    <script type="text/javascript" src="js/controllers/buscar/searchResultChannel.js"></script>
+
+    <script type="text/javascript" src="js/controllers/fullScreenView.js"></script>
+    <script type="text/javascript" src="js/controllers/youtube.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="config.js"></script>
+    <!-- Librerías Youtube -->
+    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
 
   </body>
 </html>

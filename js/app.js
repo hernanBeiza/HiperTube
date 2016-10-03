@@ -25,6 +25,7 @@
 	function initApplication() {
     console.log("initApplication");
 
+
 		categoryList = new namespace.CategoryList();
     document.querySelector("#about-version").innerHTML = namespace.VERSION;
     document.querySelector("#about-title").innerHTML = namespace.VT_CONFIG.title;
@@ -34,6 +35,7 @@
 		categoryList.addCategory(new namespace.Category(namespace.Language.ExitButton, new namespace.ExitChannel()));
 		categoryList.addCategory(new namespace.Category(namespace.Language.Settings, new namespace.SettingsChannel()));
 		categoryList.addCategory(new namespace.Category(namespace.Language.Search, new namespace.SearchChannel()));
+    
     if (namespace.VT_CONFIG.favorite) {
       categoryList.addCategory(new namespace.Category(namespace.Language.Favorites, new namespace.FavoriteChannel()));
     }
@@ -42,9 +44,7 @@
 		startFadeInterval();
 
 		getData(function(data) {
-
 			categoryList.render();
-
       // Find and select first VideoChannel on a categoryList
       var firstIndex = -1, i=0, length = categoryList.getCategoriesLength();
       while (firstIndex<0 && i< length) {
@@ -54,7 +54,6 @@
         i++;
       }
 			categoryList.focusCategory(firstIndex > 0 ? firstIndex : categoryList.getCategoriesLength() - 1);
-
 		}, categoryList);
 	}
 
@@ -62,8 +61,7 @@
    * CHANGEME: Change this method to fetch own data
    */
 	function getData(callback, categoryList) {
-    console.log("getData");
-
+    //console.log("getData");
     var entries = window.location.search.substr(1);
     var url = entries.match(/url=(.*)$/);
 
@@ -82,7 +80,7 @@
 	}
 
   function getParams(){
-    console.log("getParams");
+    //console.log("getParams");
 
     var entries = window.location.search.substr(1).match(/.*(?=&url)/);
     if (entries) {
@@ -99,7 +97,7 @@
   }
 
   function prepareDataFromUrl(categoryList, data){
-    console.log("prepareDataFromUrl");
+    //console.log("prepareDataFromUrl");
     
     var params = getParams();
     var keys = {

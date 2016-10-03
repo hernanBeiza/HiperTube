@@ -33,11 +33,11 @@
 			this.getContainer().appendChild(element);
 		},
 		updateValue: function(element, value) {
-      if (typeof value == "boolean") {
-        element.querySelector(".setting-value").innerText = value ? namespace.Language.On : namespace.Language.Off;
-      } else {
-        element.querySelector(".setting-value").innerText = value;
-      }
+			if (typeof value == "boolean") {
+				element.querySelector(".setting-value").innerText = value ? namespace.Language.On : namespace.Language.Off;
+			} else {
+				element.querySelector(".setting-value").innerText = value;
+			}
 		},
 		createElement: function() {
 			return settingsTemplate.cloneNode(true).querySelector(".setting-element");
@@ -56,7 +56,7 @@
 		showAboutOverlay: function() {
 			namespace.addClass(document.querySelector("#about-page-view"), "show");
 			namespace.addClass(document.querySelector("#overlay"), "show");
-      namespace.addEvent(document, "keydown", _hideAboutOverlay);
+			namespace.addEvent(document, "keydown", _hideAboutOverlay);
 		},
 
 		onFocus: function(index) {
@@ -66,11 +66,11 @@
 		},
 
 		fetchData: function() {
-      this.fetchDataCompleted(namespace.getCookie("vt_settings"));
+			this.fetchDataCompleted(namespace.getCookie("vt_settings"));
 		},
 		fetchDataCompleted: function(data) {
 			if (data) {
-        data = data.split(",");
+        		data = data.split(",");
 				namespace.Settings.shuffle = +data[0] == 1; // convert integer to boolean
 				namespace.Settings.autoplay = +data[1] == 1;
 			}
@@ -85,7 +85,7 @@
 		},
 
 		storeData: function() {
-      namespace.setCookie("vt_settings", (namespace.Settings.shuffle|0) + "," + (namespace.Settings.autoplay|0));
+			namespace.setCookie("vt_settings", (namespace.Settings.shuffle|0) + "," + (namespace.Settings.autoplay|0));
 		}
 
 	});

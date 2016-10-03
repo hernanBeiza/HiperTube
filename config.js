@@ -4,8 +4,8 @@
     /**
      *  Title of an application, show on about page.
      */
-    title: 'Opera Video Application',
-    support_email: 'tvapps-support@opera.com',
+    title: 'HiperTube',
+    support_email: 'hernan@hiperactivo.cl',
 
     /**
      *  An URL to fetch data.
@@ -19,24 +19,23 @@
      */
 
     prepareData: function(categoryList, data) {
-        
+        console.log("prepareData",categoryList);
         // Parse received TEXT data as a XML data
         var XMLParser = new DOMParser();
         var xml = XMLParser.parseFromString(data, "text/xml");
         //	
-        //    // Select all entries from data object  
-        var categories = {};
-        
+        // Select all entries from data object  
+        var categories = {};        
         var entries = xml.querySelectorAll("item");
         for (var i = 0; i < entries.length; i++) {
             var entry = entries[i];
 			var category = entry.querySelector("category").textContent;
-
 			if (!categories[category]) {
 				categories[category] = new namespace.Category(category, new namespace.VideoChannel(category));
 				categoryList.addCategory(categories[category]);
 			}
             var model = new namespace.VideoModel();
+            model.setID(entry.querySelector("videoID").textContent);
             model.setTitle(entry.querySelector("title").textContent);
             model.setDesc(entry.querySelector("description").textContent);
             model.setThumb(entry.querySelector("thumbnail").getAttribute('url'));
@@ -45,11 +44,9 @@
             categories[category].getChannel().addEntry(model);
         }
     }
-  };
-  
+  };  
   /**
    *  If you need to modify parts of VideoTemplate core functionality, please do it here by 
    *  extending or replacing core prototypes.
    */
-
 })(window.VTNS);

@@ -11,10 +11,9 @@
 
 	namespace.FavoriteChannel.prototype = Object.extend(new namespace.VideoChannel(), {
 		/**
-     * Fetch data from server first time we open fav channel
-     */
+		* Fetch data from server first time we open fav channel
+		*/
 		onInitChannel: function() {
-
 			// This is dynamic list, empty it every time you enter channel
 			this.emptyChannelContainer();
 			if (this.getCurrentSelected() >= this.getChannelLength()) {
@@ -44,7 +43,8 @@
 			var favData = JSON.parse(responseData);
 
 			favData.forEach(function(entry) {
-				self.addEntry(new namespace.VideoModel(entry.title, entry.desc, entry.thumb, entry.url, entry.duration));
+				console.warn(entry);
+				self.addEntry(new namespace.VideoModel(entry.videoID,entry.title, entry.desc, entry.thumb, entry.url, entry.duration));
 			});
 
 			if (this.getCurrentChannel() instanceof namespace.FavoriteChannel) {
@@ -59,9 +59,9 @@
 					return this.getEntry(i);
 				}
 			}
-      if (this._splitChannel) {
-        return self.isInFavorites.call(this._splitChannel, videoModel);
-      }
+			if (this._splitChannel) {
+				return self.isInFavorites.call(this._splitChannel, videoModel);
+			}
 			return null;
 		},
 
@@ -91,4 +91,3 @@
 	});
 
 })(window.VTNS);
-
