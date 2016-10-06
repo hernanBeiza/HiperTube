@@ -3,17 +3,17 @@
 	var settingsTemplate = namespace.prepareTemplate("settingEntryTemplate");
 	var infoPanel = document.querySelector("#info-panel-title");
 
-  var _hideAboutOverlay =  function(evt) {
-    if ([VK_BACK_SPACE, VK_BACK].indexOf(evt.keyCode) > -1) {
-      // KO-603 fix for BDP return
-      history.pushState(null, "", "#prevent-back");
-    }
-    namespace.removeClass(document.querySelector("#about-page-view"), "show");
-    namespace.removeClass(document.querySelector("#overlay"), "show");
-    evt.cancel = true;
-    evt.preventDefault();
-    namespace.removeEvent(document, "keydown", _hideAboutOverlay);
-  };
+	var _hideAboutOverlay =  function(evt) {
+	if ([VK_BACK_SPACE, VK_BACK].indexOf(evt.keyCode) > -1) {
+		// KO-603 fix for BDP return
+		history.pushState(null, "", "#prevent-back");
+		}
+		namespace.removeClass(document.querySelector("#about-page-view"), "show");
+		namespace.removeClass(document.querySelector("#overlay"), "show");
+		evt.cancel = true;
+		evt.preventDefault();
+		namespace.removeEvent(document, "keydown", _hideAboutOverlay);
+	};
 
 	namespace.SettingsChannel = function() {
 		this.fetchData();

@@ -1,4 +1,3 @@
-
 // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
@@ -9,8 +8,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // Global
 var youtubePlayer = null;
 function onYouTubeIframeAPIReady() {
-  console.log("onYouTubeIframeAPIReady");
-
+  //console.log("onYouTubeIframeAPIReady");
   youtubePlayer = new YT.Player('video', {
     height: '390',
     width: '640',
@@ -27,20 +25,20 @@ function onYouTubeIframeAPIReady() {
 
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-  console.log("onPlayerReady");
+  //console.log("onPlayerReady");
   //event.target.playVideo();
   ocultarPlayer();
 }
 
 function onLoaded(event){
-  console.log(event);
+  //console.log(event);
 }
 // 5. The API calls this function when the player's state changes.
 //    The function indicates that when playing a video (state=1),
 //    the player should play for six seconds and then stop.
 //var done = false;
 function onPlayerStateChange(event) {
-  console.log("onPlayerStateChange",event);
+  //console.log("onPlayerStateChange",event);
   if(event.data == YT.PlayerState.ENDED){
     stopVideo();    
   }
@@ -57,7 +55,6 @@ function onPlayerStateChange(event) {
   */
 }
 
-
 function mostrarPlayer(){
   document.getElementById("video").style.display = 'block';    
 }
@@ -66,7 +63,7 @@ function ocultarPlayer(){
   document.getElementById("video").style.display = 'none';  
 }
 function stopVideo() {
-  console.log("stopVideo");
+  //console.log("stopVideo");
   ocultarPlayer();
   youtubePlayer.stopVideo();
 }
@@ -74,12 +71,12 @@ function stopVideo() {
 // API Search
 // Upon loading, the Google APIs JS client automatically invokes this callback.
 googleApiClientReady = function() {
-  console.log("googleApiClientReady");
+  //console.log("googleApiClientReady");
   iniciarAPIBuscador();
 }
 
 function iniciarAPIBuscador(){
-  console.log("iniciarAPIBuscador");
+  //console.log("iniciarAPIBuscador");
   gapi.client.setApiKey('AIzaSyDTJFT2LmfkZoU5MpyWZugXijG-KAGclQ4');
   gapi.client.load('youtube', 'v3', function() {
     console.log("API Cargada");

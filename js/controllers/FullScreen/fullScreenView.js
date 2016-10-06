@@ -216,6 +216,8 @@
 	}
 
 	function addRemoveFavoriteEvent() {
+		console.log("addRemoveFavoriteEvent");
+		console.log(currentModel);
 		namespace.FavoriteChannel.Current.storeVideo(currentModel, handleAddRemoveResponse);
 	}
 

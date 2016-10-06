@@ -12,7 +12,7 @@
 			var element = searchTemplate.cloneNode(true).querySelector(".search-element");
 			element.querySelector(".search-text").innerText = namespace.Language.ExitButton;
 
-      	this.getContainer().innerHTML = "";
+      		this.getContainer().innerHTML = "";
 			this.getContainer().appendChild(element);
 		},
 

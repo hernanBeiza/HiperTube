@@ -1,5 +1,4 @@
 (function(namespace) {
-
   // Fix for broken history stack on CTV
   window.history.pushState({}, document.title, '#fix'); 
 
@@ -9,13 +8,16 @@
 	var fullView = document.querySelector("#full-screen-view");
 	var selectView = document.querySelector("#select-view");
 	var videoElement = document.querySelector("#video");
-	var info = document.querySelector("#full-screen-info");
+  var info = document.querySelector("#full-screen-info");
+
+  var cargador = document.querySelector("#cargador");
 
   document.querySelector("#info-panel").classList.remove("hide");
   document.querySelector("#info-panel-title").innerText = namespace.Language.Loading;
 
   namespace.VERSION = "2.3";
   namespace.CORE_BACKEND = "/videotemplate_core";
+  namespace.SERVIDOR = "http://hipertube.hiperactivo.cl";
   namespace.XHRPROXY = "/xhrproxy";
   namespace.LAST_SEARCHES = 10;
 
@@ -25,7 +27,6 @@
 	function initApplication() {
     console.log("initApplication");
 
-
 		categoryList = new namespace.CategoryList();
     document.querySelector("#about-version").innerHTML = namespace.VERSION;
     document.querySelector("#about-title").innerHTML = namespace.VT_CONFIG.title;
@@ -33,16 +34,17 @@
 
     // By defaul we load Settings, Search and Favorites channel. You can comment them out if you dont like that in your application
 		categoryList.addCategory(new namespace.Category(namespace.Language.ExitButton, new namespace.ExitChannel()));
-		categoryList.addCategory(new namespace.Category(namespace.Language.Settings, new namespace.SettingsChannel()));
+		//categoryList.addCategory(new namespace.Category(namespace.Language.Settings, new namespace.SettingsChannel()));
 		categoryList.addCategory(new namespace.Category(namespace.Language.Search, new namespace.SearchChannel()));
     
+    // Favoritos
     if (namespace.VT_CONFIG.favorite) {
       categoryList.addCategory(new namespace.Category(namespace.Language.Favorites, new namespace.FavoriteChannel()));
     }
-
     // This method make sure that video controls will fade out after 5 sec of inactivity. 
 		startFadeInterval();
 
+    //Cargar Información
 		getData(function(data) {
 			categoryList.render();
       // Find and select first VideoChannel on a categoryList
@@ -61,7 +63,8 @@
    * CHANGEME: Change this method to fetch own data
    */
 	function getData(callback, categoryList) {
-    //console.log("getData");
+    //console.log("getData",categoryList);
+
     var entries = window.location.search.substr(1);
     var url = entries.match(/url=(.*)$/);
 
@@ -70,11 +73,15 @@
         prepareDataFromUrl(categoryList, JSON.parse(data).message);
         callback();
       });
-
     } else {
+      //Para cargar los datos del XML
       namespace.fetchData("GET", namespace.VT_CONFIG.data_url, null, function(data){
+        //Para cargar los favoritos
         namespace.VT_CONFIG.prepareData(categoryList, data);
         callback();
+
+        cargador.classList.add("hide");
+
       });
     }
 	}

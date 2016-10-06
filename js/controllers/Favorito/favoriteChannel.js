@@ -1,6 +1,6 @@
 (function(namespace) {
 	var infoPanel = document.querySelector("#info-panel-title");
-
+	var cargador = document.querySelector("#cargador");
 	var self;
 	namespace.FavoriteChannel = function() {
 		self = this;
@@ -22,6 +22,8 @@
 
 			if (!this._dataReady) {
 				infoPanel.innerText = namespace.Language.FetchingFavorites;
+   				cargador.classList.remove("hide");
+   				cargador.classList.add("show");
 			} else {
 				this.tryFocusFirstElement();
 			}
@@ -31,11 +33,15 @@
 				this.focusElementByIndex(this.getCurrentSelected());
 			} else {
 				infoPanel.innerText = namespace.Language.NoFavoritesYet;
+				cargador.classList.remove("show");
+   				cargador.classList.add("hide");
 			}
 		},
+		//Obtener los favoritos desde una api
 		fetchFavoriteData: function() {
 			this._fetchingData = true;
-			namespace.fetchData("GET", namespace.CORE_BACKEND + "/api/video/?uid=" + namespace.Settings.uid, null, this.fetchFavoriteDataCompleted, this);
+			//namespace.fetchData("GET", namespace.CORE_BACKEND + "/api/video/?uid=" + namespace.Settings.uid, null, this.fetchFavoriteDataCompleted, this);
+			namespace.fetchData("GET", namespace.SERVIDOR + "/api/favorito/?uid=" + namespace.Settings.uid, null, this.fetchFavoriteDataCompleted, this);
 		},
 		fetchFavoriteDataCompleted: function(responseData) {
 			this._dataReady = true;
@@ -64,8 +70,10 @@
 			}
 			return null;
 		},
-
 		storeVideo: function(videoModel, callback) {
+			console.log("storeVideo");
+			console.log(videoModel);
+			//Para guardar en una API en un backend
 			namespace.fetchData("POST", namespace.CORE_BACKEND + "/api/video/", JSON.stringify({
 				uid: namespace.Settings.uid,
 				title: videoModel.getTitle(),
@@ -74,8 +82,8 @@
 				desc: videoModel.getDesc(),
 				duration: videoModel.getDuration()
 			}),
-
 			function(entry) {
+				console.log(entry);
 				entry = JSON.parse(entry);
 				if (self) {
 					if (entry) {

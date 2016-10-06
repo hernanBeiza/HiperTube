@@ -222,21 +222,21 @@
 			return this._channelData && this._channelData[index];
 		},
 
-		/**
-     * Empty abstract function to override in child
-     */
+	/**
+	* Empty abstract function to override in child
+	*/
 		renderEntry: function(model) {},
-		/**
-     * Empty abstract function to override in child
-     */
+	/**
+	* Empty abstract function to override in child
+	*/
 		onFocus: function(index) {},
-		/**
-     * Empty abstract function to override in child
-     */
+	/**
+	* Empty abstract function to override in child
+	*/
 		onEnter: function(index) {},
-		/**
-     * Empty abstract function to override in child
-     */
+	/**
+	* Empty abstract function to override in child
+	*/
 		onInitChannel: function() {}
 
 	};

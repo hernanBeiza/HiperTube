@@ -18,6 +18,8 @@
      * @data          String        ResponseText from XMLHttpRequest for a given data_url
      */
 
+    favorite: true,
+    
     prepareData: function(categoryList, data) {
         console.log("prepareData",categoryList);
         // Parse received TEXT data as a XML data

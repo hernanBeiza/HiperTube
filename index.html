@@ -79,6 +79,8 @@
         <div id="channel-panel"></div>
         <input id="search-input" maxlength="25">
       </div>
+
+      <!-- Notificaciones -->
       <div id="notifications"></div>
 
       <!-- Full screen view for video defined bellow -->
@@ -114,18 +116,31 @@
       
 
       <div id="overlay"></div>
+
       <!-- About page -->
       <div id="about-page-view">
-        <strong id="about-title"></strong><br/>
-        Version <span id="about-version"></span><br/>
-        <span id="about-email"><b>Support: tvapps-support@opera.com</b></span><br/><br/>
+        <strong id="about-title">Acerca de Hipertube</strong><br/>
+        Version <span id="about-version">0.0.1</span><br/>
+        <span id="about-email"><b>Soporte: contacto@hiperactivo.cl</b></span><br/><br/>
+        <!--
         Copyright 2012 @ Opera Software ASA, licensed under the Creative Commons Attribution 3.0 Unported, available at http://creativecommons.org/licenses/by/3.0/<br/>
         Copyright 2012 by Steve Matteson, with the font name Open Sans,
         licensed under the Apache License Version 2.0, January 2004 available
         at http://www.apache.org/licenses/        
+        -->
         <div class="back-button"> Back </div>
       </div>
-    </div>
+      
+      <!-- Cargador -->
+      <div id="cargador">      
+        <div class="sk-three-bounce">
+          <div class="sk-child sk-bounce1"></div>
+          <div class="sk-child sk-bounce2"></div>
+          <div class="sk-child sk-bounce3"></div>
+        </div>
+      </div>
+
+    </div><!--Fin main-->
 
     <script type="text/javascript">
       // Define namespace
@@ -134,14 +149,14 @@
 
     <script type="text/javascript" src="js/lang.js"></script>
     <script type="text/javascript" src="js/core.js"></script>
-    <script type="text/javascript" src="js/settings.js"></script>
-    <script type="text/javascript" src="js/channel.js"></script>
-    <script type="text/javascript" src="js/exitChannel.js"></script>
-    <script type="text/javascript" src="js/settingsChannel.js"></script>
-    <script type="text/javascript" src="js/videoChannel.js"></script>
-    <script type="text/javascript" src="js/favoriteChannel.js"></script>
-    <script type="text/javascript" src="js/category.js"></script>
-    <script type="text/javascript" src="js/categoryList.js"></script>
+    <script type="text/javascript" src="js/controllers/Configuracion/settings.js"></script>
+    <script type="text/javascript" src="js/controllers/channel.js"></script>
+    <script type="text/javascript" src="js/controllers/Salir/exitChannel.js"></script>
+    <script type="text/javascript" src="js/controllers/Configuracion/settingsChannel.js"></script>
+    <script type="text/javascript" src="js/controllers/videoChannel.js"></script>
+    <script type="text/javascript" src="js/controllers/Favorito/favoriteChannel.js"></script>
+    <script type="text/javascript" src="js/controllers/Categoria/category.js"></script>
+    <script type="text/javascript" src="js/controllers/Categoria/categoryList.js"></script>
 
     <!-- DAOs--> 
     <script type="text/javascript" src="js/dao/YoutubeDAO.js"></script>
@@ -152,10 +167,11 @@
     <script type="text/javascript" src="js/models/videoModel.js"></script>
 
     <!-- Controladores -->
-    <script type="text/javascript" src="js/controllers/buscar/searchChannel.js"></script>
-    <script type="text/javascript" src="js/controllers/buscar/searchResultChannel.js"></script>
+    <script type="text/javascript" src="js/controllers/Buscar/searchChannel.js"></script>
+    <script type="text/javascript" src="js/controllers/Buscar/searchResultChannel.js"></script>
 
-    <script type="text/javascript" src="js/controllers/fullScreenView.js"></script>
+    <script type="text/javascript" src="js/controllers/FullScreen/fullScreenView.js"></script>
+    <!-- Importantes -->    
     <script type="text/javascript" src="js/controllers/youtube.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="config.js"></script>

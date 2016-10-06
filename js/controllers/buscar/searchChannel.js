@@ -128,11 +128,6 @@
 
 		triggerSearch: function(searchModel, onSuccessCallback) {
       console.log("triggerSearch",searchModel);
-      var youtubeDAO = new namespace.YoutubeDAO();
-      youtubeDAO.buscar(searchModel,function(resultados){
-        console.warn("resultados en SearchChannel");
-        console.warn(resultados);
-      });
       namespace.CategoryList.searchFor(searchModel, onSuccessCallback);
 		},
 
