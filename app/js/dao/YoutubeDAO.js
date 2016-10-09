@@ -8,11 +8,9 @@
 
 	}
 
-
 	namespace.YoutubeDAO.prototype = {
 		buscar: function(searchModelo,callbackResultado){
-
-			console.log("buscar:",searchModelo);
+			//console.log("buscar:",searchModelo);
 			if(searchModelo.getText()!=""){
 			    var request = gapi.client.youtube.search.list({
 					q: searchModelo.getText(),
@@ -20,7 +18,7 @@
 					maxResults: 10
 			    });
 			    request.execute(function(response)  {   
-					console.log("response",response);                                                                                 
+					//console.log("response",response);                                                                                 
 					var resultados = response.result.items;    
 					var modelos =[];
 					//console.log(resultados);
@@ -32,8 +30,9 @@
 							var titulo = item.snippet.title;
 							var mini = item.snippet.thumbnails.default.url;
 							var descripcion = item.snippet.description;
-							//console.log(id,titulo,mini);
-							var modelo = new namespace.VideoModel(id,titulo,descripcion,mini,id,"duración","tipo");
+							var channelTitle = item.snippet.channelTitle;
+							var date = item.snippet.publishedAt;
+							var modelo = new namespace.VideoModel(id,titulo,descripcion,mini,id,"00:00","",channelTitle,date);
 							modelos.push(modelo);
 						}
 					}

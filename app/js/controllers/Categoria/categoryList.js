@@ -3,9 +3,11 @@
 	var selectView = document.querySelector("#select-view");
 	var infoPanel = document.querySelector("#info-panel-title");
 	var infoPanelDesc = document.querySelector("#info-panel-desc");
-	var infoPanelDescripcion = document.querySelector("#info-panel-descripcion");
 
-	var cargador = document.querySelector("#cargador");
+
+	var buscarInput = document.querySelector("#search-input");
+
+	var cargador = document.querySelector(".cargador");
 
 	var categoryList, currentCategory = 0,
 	searchResultCategory;
@@ -15,14 +17,14 @@
 			switch (evt.keyCode) {
 			case VK_UP:
 				// UP
-        categoryList.getCategory(currentCategory).getChannel().emptyChannelContainer();
+				categoryList.getCategory(currentCategory).getChannel().emptyChannelContainer();
 				currentCategory = (currentCategory > 0) ? (currentCategory - 1) : (categoryList.getCategoriesLength() - 1);
 				onCategoryFocus(categoryList.getCategory(currentCategory));
 				evt.preventDefault();
 				break;
 			case VK_DOWN:
 				// DOWN
-        categoryList.getCategory(currentCategory).getChannel().emptyChannelContainer();
+    			categoryList.getCategory(currentCategory).getChannel().emptyChannelContainer();
 				currentCategory = (currentCategory < categoryList.getCategoriesLength() - 1) ? (currentCategory + 1) : 0;
 				onCategoryFocus(categoryList.getCategory(currentCategory));
 				evt.preventDefault();
@@ -32,10 +34,15 @@
 	}
 
 	function onCategoryFocus(category) {
+		console.log(category);
 		var element = category.getContainer();
 		// Scroll and focus proper category
 		namespace.removeClass(categoryListElement.querySelector(".focused"), "focused");
 		namespace.addClass(element, "focused");
+
+		namespace.removeClass(buscarInput,"show");
+		namespace.addClass(buscarInput,"hide");
+
 		categoryListElement.style.top = -70 - element.offsetTop + "px";
 
 		// Fade categories based on distance
@@ -53,7 +60,6 @@
 
 		// Clear info panel
 		infoPanel.innerText = infoPanelDesc.innerText = "";
-		infoPanelDescripcion.innerText = "";
 		
 		var currentChannel = category.getChannel();
 		currentChannel.initChannel();
@@ -155,8 +161,6 @@
 		youtubeDAO.buscar(searchModel,function(resultados){
     	    console.warn("resultados en categoryList");
         	console.warn(resultados);
-			cargador.classList.remove("show");
-			cargador.classList.add("hide");
 
         	if(resultados.length>0){
 				for (var i = 0; i < resultados.length; i++) {
@@ -171,6 +175,7 @@
 				}
 
 				if (searchResultCategory) {
+					//Ir a resultados
 					categoryList.render();
 					categoryList.focusCategory(3);
 					if (onSuccessCallback) {
@@ -181,6 +186,8 @@
 				namespace.showNotification(namespace.Language.NoResultsFor + text, "notification-no-results");
 			}
 
+			cargador.classList.remove("show");
+			cargador.classList.add("hide");
       	});
 
 	

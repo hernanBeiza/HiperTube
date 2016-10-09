@@ -1,12 +1,15 @@
 (function(namespace) {
 
-	namespace.VideoModel = function(id,title, desc, thumb, video, duration, type) {
+
+	namespace.VideoModel = function(id, title, desc, thumb, video, duration, type, channelTitle, date) {
 		this.setID(id);
 		this.setTitle(title);
 		this.setDesc(desc);
 		this.setThumb(thumb);
-		this.setVideo(video, type);
 		this.setDuration(duration);
+		this.setVideo(video, type);
+		this.setChannelTitle(channelTitle);
+		this.setDate(date);
 	};
 
 	namespace.VideoModel.prototype = {
@@ -56,6 +59,31 @@
 		},
 		getDuration: function() {
 			return this._duration;
+		},
+		setChannelTitle: function(channelTitle) {
+			this._channelTitle = channelTitle;
+		},
+		getChannelTitle: function() {
+			return this._channelTitle;
+		},
+		setDate: function(date) {
+			//console.log(date);
+			var originalString = new String(date);
+			//console.log(originalString);
+			var finalString = originalString.replace(/\D/g," "); 
+			//console.log(finalString);
+			var dtcomps = finalString.split(" ");
+			//console.log(dtcomps);
+			//console.log(dtcomps);
+			// modify month between 1 based ISO 8601 and zero based Date dtcomps[1]--;
+			//this._date = new Date(Date.UTC(dtcomps[0],dtcomps[1],dtcomps[2],dtcomps[3],dtcomps[4],dtcomps[5]));
+			this._date = new Date(Date.UTC(dtcomps[0],dtcomps[1],dtcomps[2],dtcomps[3],dtcomps[4],dtcomps[5]));
+		},
+		getDate: function() {
+			var dateString = ('0' + this._date.getDate()).slice(-2) + '/'
+             + ('0' + (this._date.getMonth())).slice(-2) + '/'
+             + this._date.getFullYear();
+			return dateString;
 		}
 	};
 

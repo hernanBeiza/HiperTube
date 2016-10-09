@@ -1,3 +1,26 @@
+.cargador {
+  width: 100%;
+  height: auto;
+  /*  
+  padding: 10px;
+  border: 10px solid #2C3E50;
+  margin: 20px;
+  */
+  /*
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  */
+  /*
+  flex-direction: row;
+  flex-wrap: wrap; 
+  */
+  /*
+  justify-content: center;
+  align-items: center;
+  */
+}
+
 #info-panel-descripcion {
 	font-size: 16px;
 	/*background: url(../images/tv_template_buttons.png) no-repeat -30px -25px;*/
@@ -5,13 +28,6 @@
 	width: 100%;
 	/*white-space: nowrap;*/
 	color:#808080;
-}
-
-#cargador {
-	text-align: center;
-	width: auto;
-	height: 200px;
-	background: yellow;
 }
 
 /* Spinner */
@@ -34,7 +50,7 @@
 .sk-three-bounce .sk-child {
     width: 20px;
     height: 20px;
-    background-color: #333;
+    background-color: #fff;
     border-radius: 100%;
     display: inline-block;
     -webkit-animation: sk-three-bounce 1.4s ease-in-out 0s infinite both;

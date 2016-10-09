@@ -24,7 +24,9 @@
         <div class="video-element-title"></div>
         <div class="video-element-index"></div>
         <div class="video-element-play-icon"></div>
+        <!--
         <div class="video-element-duration"></div>
+        -->
       </div>
     </script>
 
@@ -59,7 +61,7 @@
       <div id="player"></div>
       -->
       <!-- Full screen video element defined bellow -->
-      <video id="video"></video>
+      <video id="video" class="hide"></video>
 
       <!-- First (select category) view defined bellow -->
       <div id="select-view">
@@ -72,9 +74,16 @@
         </div>
         <div class="left-panel-border border-right"></div>
         <div id="info-panel" class="hide">
+          <!-- Cargador -->
+          <div class="cargador">      
+            <div class="sk-three-bounce">
+              <div class="sk-child sk-bounce1"></div>
+              <div class="sk-child sk-bounce2"></div>
+              <div class="sk-child sk-bounce3"></div>
+            </div>
+          </div>
           <div id="info-panel-title"></div>
           <div id="info-panel-desc"></div>
-          <div id="info-panel-descripcion"></div>
         </div>
         <div id="channel-panel"></div>
         <input id="search-input" maxlength="25">
@@ -96,7 +105,8 @@
             <div id="full-screen-button-back"></div>
             <div id="full-screen-button-pause"></div>
             <!-- <div  id="full-screen-button-mute"></div> -->
-            <div id="full-screen-button-favorite"></div>
+            <!-- <div id="full-screen-button-favorite"></div> -->
+
             <div id="full-screen-button-show-info"></div>
             <div id="full-screen-button-prev"></div>
             <div id="full-screen-button-current">
@@ -131,14 +141,6 @@
         <div class="back-button"> Back </div>
       </div>
       
-      <!-- Cargador -->
-      <div id="cargador">      
-        <div class="sk-three-bounce">
-          <div class="sk-child sk-bounce1"></div>
-          <div class="sk-child sk-bounce2"></div>
-          <div class="sk-child sk-bounce3"></div>
-        </div>
-      </div>
 
     </div><!--Fin main-->
 

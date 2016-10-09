@@ -2,6 +2,8 @@
 	var fullView = document.querySelector("#full-screen-view");
 	var selectView = document.querySelector("#select-view");
 	var video = document.querySelector("#video");
+
+	var progress = document.querySelector("#full-screen-progress");
 	var progressIndicator = document.querySelector("#full-screen-progress-indicator");
 	var progressTime = document.querySelector("#full-screen-progress-time");
 	var progressFullTime = document.querySelector("#full-screen-progress-full-time");
@@ -100,6 +102,14 @@
   	}
 
 	function showFullScreenView() {
+
+		//Ocultar cosas que no ocuparemos
+		namespace.addClass(progress, "hide");
+		namespace.addClass(progressIndicator, "hide");
+		namespace.addClass(progressTime, "hide");
+		namespace.addClass(progressFullTime, "hide");
+		namespace.addClass(progressPlaybackRate, "hide");
+
 		namespace.addClass(selectView, "hide");
 		namespace.removeClass(fullView, "hide");
 	}
@@ -218,7 +228,7 @@
 	function addRemoveFavoriteEvent() {
 		console.log("addRemoveFavoriteEvent");
 		console.log(currentModel);
-		namespace.FavoriteChannel.Current.storeVideo(currentModel, handleAddRemoveResponse);
+		//namespace.FavoriteChannel.Current.storeVideo(currentModel, handleAddRemoveResponse);
 	}
 
 	function showHideChannelNavigation(toShow) {
@@ -232,6 +242,7 @@
 	}
 
 	function handleAddRemoveResponse(added) {
+		/*
 		if (added) {
       		namespace.removeClass(favButton, "add");
 			namespace.showNotification(namespace.Language.FavoriteAdded);
@@ -239,6 +250,7 @@
       		namespace.addClass(favButton, "add");
 			namespace.showNotification(namespace.Language.FavoriteRemoved);
 		}
+		*/
 		if (currentChannel instanceof namespace.FavoriteChannel) {
 			showHideChannelNavigation(false);
 			currentChannel.initChannel();
@@ -270,7 +282,7 @@
 		document.querySelector("#full-screen-button-back").onEnter = backEvent;
 		document.querySelector("#full-screen-button-pause").onEnter = playPauseEvent;
 		// document.querySelector("#full-screen-button-mute").onEnter = muteUnmuteEvent;
-		document.querySelector("#full-screen-button-favorite").onEnter = addRemoveFavoriteEvent;
+		// document.querySelector("#full-screen-button-favorite").onEnter = addRemoveFavoriteEvent;
 		document.querySelector("#full-screen-button-prev").onEnter = prevVideoEvent;
 		document.querySelector("#full-screen-button-next").onEnter = nextVideoEvent;
 		document.querySelector("#full-screen-button-current").onEnter = hideFullScreenView;

@@ -18,9 +18,10 @@
      * @data          String        ResponseText from XMLHttpRequest for a given data_url
      */
 
-    favorite: true,
-    
+    favorite: false,
+        
     prepareData: function(categoryList, data) {
+        //Carga desde el XML local
         console.log("prepareData",categoryList);
         // Parse received TEXT data as a XML data
         var XMLParser = new DOMParser();
@@ -43,6 +44,8 @@
             model.setThumb(entry.querySelector("thumbnail").getAttribute('url'));
             model.setVideo(entry.querySelector("content").getAttribute('url'), entry.querySelector("content").getAttribute('type'));
             model.setDuration(entry.querySelector("duration").textContent);
+            model.setChannelTitle(entry.querySelector("channelTitle").textContent);
+            model.setDate(entry.querySelector("date").textContent);
             categories[category].getChannel().addEntry(model);
         }
     }

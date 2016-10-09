@@ -40,6 +40,7 @@
  */
 	Object.extend(namespace, {
 		prepareTemplate: function(template) {
+			//console.log("prepareTemplate",template);
 			var script = document.getElementById(template);
 			var documentFragment = document.createDocumentFragment();
 			var tempElement = (document.createElement("div"));

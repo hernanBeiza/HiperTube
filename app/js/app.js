@@ -10,7 +10,7 @@
 	var videoElement = document.querySelector("#video");
   var info = document.querySelector("#full-screen-info");
 
-  var cargador = document.querySelector("#cargador");
+  var cargador = document.querySelector(".cargador");
 
   document.querySelector("#info-panel").classList.remove("hide");
   document.querySelector("#info-panel-title").innerText = namespace.Language.Loading;
@@ -31,21 +31,37 @@
     document.querySelector("#about-version").innerHTML = namespace.VERSION;
     document.querySelector("#about-title").innerHTML = namespace.VT_CONFIG.title;
     document.querySelector("#about-email").innerHTML = namespace.VT_CONFIG.support_email;
-
     // By defaul we load Settings, Search and Favorites channel. You can comment them out if you dont like that in your application
 		categoryList.addCategory(new namespace.Category(namespace.Language.ExitButton, new namespace.ExitChannel()));
 		//categoryList.addCategory(new namespace.Category(namespace.Language.Settings, new namespace.SettingsChannel()));
 		categoryList.addCategory(new namespace.Category(namespace.Language.Search, new namespace.SearchChannel()));
     
     // Favoritos
+    // config.js favorito: true
     if (namespace.VT_CONFIG.favorite) {
       categoryList.addCategory(new namespace.Category(namespace.Language.Favorites, new namespace.FavoriteChannel()));
     }
     // This method make sure that video controls will fade out after 5 sec of inactivity. 
 		startFadeInterval();
 
-    //Cargar Información
-		getData(function(data) {
+    /*
+    //cargar menú de categorías antes
+    categoryList.render();
+    // Find and select first VideoChannel on a categoryList
+    var firstIndex = -1, i=0, length = categoryList.getCategoriesLength();
+    while (firstIndex<0 && i< length) {
+      if (categoryList.getCategory(i).getChannel() instanceof namespace.VideoChannel) {
+        firstIndex = i;
+      }
+      i++;
+    }
+    categoryList.focusCategory(firstIndex > 0 ? firstIndex : categoryList.getCategoriesLength() - 1);
+    cargador.classList.remove("show");
+    cargador.classList.add("hide");
+    */
+
+    //Cargar Información desde un archivo XML
+    getData(function(data) {
 			categoryList.render();
       // Find and select first VideoChannel on a categoryList
       var firstIndex = -1, i=0, length = categoryList.getCategoriesLength();
@@ -57,6 +73,7 @@
       }
 			categoryList.focusCategory(firstIndex > 0 ? firstIndex : categoryList.getCategoriesLength() - 1);
 		}, categoryList);
+    
 	}
 
   /**
@@ -76,12 +93,10 @@
     } else {
       //Para cargar los datos del XML
       namespace.fetchData("GET", namespace.VT_CONFIG.data_url, null, function(data){
-        //Para cargar los favoritos
+        //Para cargar la info del canal desde el XML
         namespace.VT_CONFIG.prepareData(categoryList, data);
         callback();
-
         cargador.classList.add("hide");
-
       });
     }
 	}
@@ -113,7 +128,9 @@
       title: params.title || "title",
       description: params.desc || "description",
       thumb: params.thumb || "imageUrl",
-      duration: params.duration || "duration"  
+      duration: params.duration || "duration",
+      date: params.date || "date",
+      channelTitle: params.channelTitle || "channelTitle"
     };
 
     function getContentOrAttr(entry, key){
@@ -171,14 +188,13 @@
 			}
 
 			var model = new namespace.VideoModel();
-			model.setTitle(getContentOrAttr(entry, keys.title));
+      model.setTitle(getContentOrAttr(entry, keys.title));
+			model.setChannelTitle(getContentOrAttr(entry, keys.channelTitle));
 			model.setDesc(getContentOrAttr(entry, keys.description));
 			model.setThumb(getContentOrAttr(entry, keys.thumb));
 			model.setVideo(findMp4(entry));
-			model.setDuration(getContentOrAttr(entry, keys.duration));
-
-      
-
+      model.setDuration(getContentOrAttr(entry, keys.duration));
+			model.setDate(getContentOrAttr(entry, keys.date));
 			categories[category].getChannel().addEntry(model);
 		}
 

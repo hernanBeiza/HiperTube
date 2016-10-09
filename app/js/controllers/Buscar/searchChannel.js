@@ -5,7 +5,8 @@
 
 	namespace.SearchChannel = function() {
 		this.addEntry(new namespace.SearchModel(namespace.Language.EnterKeyword, true));
-		this.fetchHistory();
+    //Cargar búsquedas realizadas
+		//this.fetchHistory();
 	};
 
 	namespace.SearchChannel.prototype = Object.extend(new namespace.Channel(), {
@@ -54,6 +55,7 @@
      * function deals with non-virtual keyboard
      */
     triggerKeyboard: function(){
+        console.log("triggerKeyboard");
         var input = document.querySelector("#search-input");
         input.value = "";
         namespace.addClass(input, "show");
@@ -65,7 +67,7 @@
                 //onchange
                 ev.preventDefault();
                 namespace.removeEvent(document, "keydown",keydownEvent);
-                if (input.value) {
+                if (input.value) {          
                   var model = self.getExistingModel(new namespace.SearchModel(input.value));
                   self.triggerSearch(model,function(){
                     self.addEntry(model, 1);
@@ -89,7 +91,7 @@
         namespace.addEvent(document, "keydown",keydownEvent);
     },
 		triggerVirtualKeyboard: function() {
-
+      console.log("triggerVirtualKeyboard");
       var input = document.querySelector("#search-input");
       function cancelOtherEvents(evt){
         evt.cancel = true;
@@ -135,10 +137,11 @@
       var toSet = [];
       for (var len = this.getChannelLength(), i=0; i<len && toSet.length < namespace.LAST_SEARCHES; i++){
         if (!this.getEntry(i).getInteractive()){
-          toSet.push(encodeURIComponent(this.getEntry(i).getText()));
+          //toSet.push(encodeURIComponent(this.getEntry(i).getText()));
+          toSet.push(this.getEntry(i).getText());
         }
       }
-      namespace.setCookie("vt_history", toSet.join(","));
+      //namespace.setCookie("vt_history", toSet.join(","));
 		},
     fetchHistory: function(){
       var history = namespace.getCookie("vt_history");
@@ -149,7 +152,8 @@
 		fetchHistoryCompleted: function(data) {
       var self = this;
       data.forEach(function(entry){
-        self.addEntry(new namespace.SearchModel(encodeURIComponent(entry)));
+        //self.addEntry(new namespace.SearchModel(encodeURIComponent(entry)));
+        self.addEntry(new namespace.SearchModel(entry));
       });
       if (this.getCurrentChannel() instanceof namespace.SearchChannel) {
         self.render();

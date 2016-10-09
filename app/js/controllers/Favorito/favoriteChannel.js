@@ -1,6 +1,6 @@
 (function(namespace) {
 	var infoPanel = document.querySelector("#info-panel-title");
-	var cargador = document.querySelector("#cargador");
+	var cargador = document.querySelector(".cargador");
 	var self;
 	namespace.FavoriteChannel = function() {
 		self = this;
