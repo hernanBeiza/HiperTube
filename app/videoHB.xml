@@ -102,7 +102,7 @@ We are the wonderful ones]]>
             </description>
             <category>Recommended</category>
             <duration>00:01:08</duration>
-            <content url="http://apps.tvstore.opera.com/videos/Opera_TV_browser.mp4" fileSize="24434480" type="video/mp4" />
+            <content url="" fileSize="24434480" type="video/mp4" />
             <thumbnail url="http://img.youtube.com/vi/ltLJf9QJVK0/0.jpg" width="250" height="140" />
             <videoID>ltLJf9QJVK0</videoID>
             <date>1987-07-04T21:13:31.000Z</date>
@@ -116,45 +116,22 @@ All rights reserved to Chris Isaak and his friend of the Video® xD]]>
             </description>
             <category>Recommended</category>
             <duration>00:01:12</duration>
-            <content url="http://apps.tvstore.opera.com/videos/What_s_new_in_Opera_Mini_Next_and_Opera_Mobile_12.mp4" fileSize="24434480" type="video/mp4" />
+            <content url="" fileSize="24434480" type="video/mp4" />
             <thumbnail url="https://i.ytimg.com/vi/1ldDVUxeLzQ/default.jpg" width="250" height="140" />
             <videoID>1ldDVUxeLzQ</videoID>
             <date>2015-07-21T02:08:18.000Z</date>
             <channelTitle>Hernán Beiza</channelTitle>
         </item>        
         <item>
-            <title>Sector A - Sol</title>
-            <description><![CDATA[Encuentra el primer disco de la banda en http://www.portaldisc.com/disco.php?i...
-Síguenos:
-Facebook: https://www.facebook.com/bandasectora
-Twitter: https://twitter.com/bandasectora
-
-Créditos:
-
-Banda: Sector A
-Tema: Sol
-Año: 2014
-
-Actriz: Paz García
-Cámara: Gustavo Zapata Covarrubias
-Edición y Corrección de color: Hernán Beiza 
-Dirección: Ricardo De las Riberas
-
-
-Sector A es:
-
-Yaya - Voz
-Cris - Guitarra
-Keko - Voz y Bajo
-
-®Sector A 2014 - 2016xD]]>
+            <title>Sector A - Al Final  (Video Oficial)</title>
+            <description><![CDATA["https://www.facebook.com/bandasectora/ https://twitter.com/BandaSectorA https://instagram.com/bandasectora/ Banda: Sector A Canción: Al Final Año: 2016 ..."]]>
             </description>
             <category>Recommended</category>
             <duration>00:01:12</duration>
-            <content url="http://apps.tvstore.opera.com/videos/What_s_new_in_Opera_Mini_Next_and_Opera_Mobile_12.mp4" fileSize="24434480" type="video/mp4" />
-            <thumbnail url="https://i.ytimg.com/vi/2e5V6icqJZ8/default.jpg" width="250" height="140" />
-            <videoID>2e5V6icqJZ8</videoID>
-            <date>2014-12-12T12:00:13.000Z</date>
+            <content url="" fileSize="24434480" type="video/mp4" />
+            <thumbnail url="https://i.ytimg.com/vi/eHS0c750sU4/default.jpg" width="250" height="140" />
+            <videoID>eHS0c750sU4</videoID>
+            <date>2016-09-01T22:11:33.000Z</date>
             <channelTitle>Sector A</channelTitle>
         </item>
 </channel>

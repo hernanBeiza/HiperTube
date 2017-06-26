@@ -1,6 +1,6 @@
 {
   "name": "hipertube",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "aplicación para ver videos en smart tv bravia",
   "main": "index.html",
   "scripts": {
